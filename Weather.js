@@ -103,18 +103,6 @@ const weatherOptions = {
     },
 }
 
-async function fetchWeatherData(cityName) {
-    const {data: {main: {temp}, weather, wind: {speed}, name}} = await axios.get(`https://api.openweathermap.org/data/2.5/weather?q=${cityName}&units=metric&appid=${API_KEY}lang=ru&units=metric`);
-    this.setState({
-        isLoading: false,
-        temp: temp,
-        humidity: humidity,
-        condition: weather[0].main,
-        speed: speed,
-        name: name,
-      });
-  }
-
 export default function Weather({temp, name, condition,  speed, humidity}) {
     console.log(name)
     const [cityName, setCityName] = useState('');
@@ -217,8 +205,8 @@ export default function Weather({temp, name, condition,  speed, humidity}) {
                 </View>
             </ImageBackground>
         );
-    }
-    else {
+    } 
+    else { //Для стилей которые не имеют картинок для фона
         return (
             <LinearGradient
             colors={weatherOptions[condition].gradient}
